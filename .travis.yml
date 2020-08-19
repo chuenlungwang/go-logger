@@ -8,7 +8,7 @@ script:
 - "./.travis.gofmt.sh"
 - go test -v ./...
 - go test -bench=. -benchmem
-before_deploy: make -VERSION=$TRAVIS_TAG
+before_deploy: make VERSION=$TRAVIS_TAG
 deploy:
   provider: releases
   api_key:
