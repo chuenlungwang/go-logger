@@ -6,5 +6,6 @@ go:
 env:
   - GO111MODULE=on
 script:
+  - ./.travis.gofmt.sh
   - go test -v ./...
   - go test -bench=. -benchmem
