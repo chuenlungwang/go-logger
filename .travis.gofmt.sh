@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ -n "$(gofmt -l .)"]; then
+if [ -n "$(gofmt -l .)" ]; then
   echo "Go code is not formatted:"
   gofmt -d .
   exit 1
