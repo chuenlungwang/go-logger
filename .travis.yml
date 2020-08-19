@@ -1,11 +1,21 @@
 language: go
 os: linux
-
 go:
-  - 1.14.x
+- 1.14.x
 env:
-  - GO111MODULE=on
+- GO111MODULE=on
 script:
-  - ./.travis.gofmt.sh
-  - go test -v ./...
-  - go test -bench=. -benchmem
+- "./.travis.gofmt.sh"
+- go test -v ./...
+- go test -bench=. -benchmem
+before_deploy: make -VERSION=$TRAVIS_TAG
+deploy:
+  provider: releases
+  api_key:
+    secure: osKlWXjrQAmuq2IGZ7qZz7STA7LNG42sjlPoS8OwJap3ktbB0v1wBp4c1YOg9j9FaLDVfYQ8hoii6L/V6qy5nrzL2JyMLZsXN6nuO9zOPfFYqLilx53c3/Hy5jWkr881uLFHyyeCBNMiDVWDINlsrBtHWBK6Y0IhdlvN84ZhwAJkMkJnaJMFOo5m48P3DM8gSe/qUMk8MNcMfIlkGt2oHtGxJ0+phdUUaL4WqKKZYF4ucmkkNIg4VJtCSgSt46U8zAfFJkhQ8rlivR0ZljxgQg67uzb2GLYhSa/HCCMMixDUBPIywYC/ze3UqX4mfNtnwvielHPIIdEboVRTTZPO2Es5uKEUX6l01AWSBd22qPnMv+IYAqRY/1wc9mSQvkCe0Ii+jUaAOYMdshllh60Vc4mhJ+b7bEmKIIzkmIq4FOJOTsAv5SZayGQ8u3R91h5spbzYrmH59wSgRItT3QtMp9VMSCUv+dbetc2SlCASbDPgqLQALOGEUsEwHqk966P6wrGOLqhqFp9/A2/wQx9Z1YoaS2HUO/pYLTv6pKjMbbms2L+/oXAxiMrj/vO+RX0Sopc0PWrMRWBu7MxuqM/+gmBz8cWSN/RklBAI4zhTGtgrZINq7WOnGAmO/PmWg+XFVfncdKdbak/UfKT/qSMRpfAjOUKUBNKZ6mMbPrWf510=
+  file_glob: true
+  file: bin/*
+  skip_cleanup: true
+  on:
+    repo: chuenlungwang/go-logger
+    tags: true
